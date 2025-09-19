@@ -1,9 +1,6 @@
 import json
 from kanren import Relation, facts, run, conde, var, eq
 
-father = Relation()
-mother = Relation()
-
 # Check if 'x' is the parent of 'y'
 def parent(x, y):
     return conde([father(x, y)], [mother(x, y)])
@@ -24,6 +21,9 @@ def uncle(x, y):
     return conde((father(temp, x), grandparent(temp, y)))
 
 if __name__ == '__main__':
+    father = Relation()
+    mother = Relation()
+    
     with open('relationships.json') as f:
         d = json.loads(f.read())
     
